@@ -1,6 +1,7 @@
 package compression;
 
 import java.util.List;
+import java.util.Objects;
 
 public class FileCompressor {
     private CompressionStrategy strategy;
@@ -10,9 +11,7 @@ public class FileCompressor {
     }
 
     public void compressFiles(List<String> files, String outputFile) {
-        if (strategy == null) {
-            throw new IllegalStateException("Estratégia de compressão não definida.");
-        }
+        Objects.requireNonNull(strategy, "Compression strategy must be set before execution.");
         strategy.compress(files, outputFile);
     }
 }
